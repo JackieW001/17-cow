@@ -3,10 +3,16 @@ var boxHeight = box.offsetHeight;
 var boxWidth = box.offsetWidth;
 
 //hardcode target as center
-//randomize later
-var targetX = boxWidth / 2;
-var targetY = boxHeight / 2;
+//var targetX = boxWidth / 2;
+//var targetY = boxHeight / 2;
 
+var getRandomInt = function(max){
+    return Math.floor(Math.random()*max);
+}
+
+//randomize later
+var targetX = getRandomInt(boxWidth);
+var targetY = getRandomInt(boxHeight);
 
 console.log( "box height: " + boxHeight );
 console.log( "box width: " + boxWidth );
@@ -20,15 +26,16 @@ var distance = function (x0, y0, x1, y1) {
 
 
 var findIt = function(e) {
-    /* YOUR IMPLEMENTATION */
-    // console.log(e.clientX);
-    // console.log(e.clientY);
-    // console.log(targetX);
-    // console.log(targetY);
-    var dist = distance(e.clientX, e.clientY, targetX, targetY);
+    var dist = Math.floor(distance(e.clientX, e.clientY, targetX, targetY));
+    dist = 255-dist;
+    var hexString = dist.toString(16).toUpperCase();
     console.log(dist);
-    var hexString = Math.floor(dist).toString(16);
-    box.setAttribute("color", "#" + hexString);
+    box.style.backgroundColor = "rgb(" + dist + "," + dist + "," + dist + ")";
+
+    if (dist > 230) {
+	alert("YOU FOUND ME!");
+    }
+
 };
 
 /*
