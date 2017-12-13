@@ -30,10 +30,12 @@ var findIt = function(e) {
     dist = 255-dist;
     var hexString = dist.toString(16).toUpperCase();
     console.log(dist);
-    box.style.backgroundColor = "rgb(" + dist + "," + dist + "," + dist + ")";
+    box.style.backgroundColor = "rgb(" + dist/2 + "," + dist + "," + dist + ")";
 
     if (dist > 230) {
 	alert("YOU FOUND ME!");
+	targetX = getRandomInt(boxWidth);
+	targetY = getRandomInt(boxHeight);
     }
 
 };
